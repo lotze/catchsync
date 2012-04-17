@@ -1,5 +1,3 @@
-# Catch
-
 # What is This?
 
 It's a simple ruby script to sync your text notes from catch.com's wonderful service and store them in a git repository.  I use it for backing up my notes and being able to use git to see changes (for example, I can see how my TODO list has changed over time).
@@ -12,12 +10,13 @@ It also doesn't sync comments on notes or multimedia notes.  If you want to add 
 
 ## Installation
 
+```
 git clone https://github.com/lotze/catchsync
 gem install json
 gem install catch
 gem install fileutils
-
 cp sample_config.json config.json
+```
 
 edit config.json to add your git repository, catch username, and catch password
 
@@ -25,9 +24,11 @@ edit config.json to add your git repository, catch username, and catch password
 
 You can easily use a local git repository by doing the following
 
+```
 mkdir /catch_repo
 cd /catch_repo
 git init --bare
+```
 
 and setting the git_repository value in config.json to /catch_repo
 
@@ -35,7 +36,9 @@ and setting the git_repository value in config.json to /catch_repo
 
 ## Use
 
+```
 ruby catch_sync.rb
+```
 
 ## Note on Patches/Pull Requests
 
