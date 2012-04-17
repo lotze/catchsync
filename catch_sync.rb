@@ -26,6 +26,8 @@ if File.exists?(sync_file)
 end
 
 new_sync = Time.new
+
+any_changes = false
   
 still_in_catch_set = Set.new
 
@@ -37,6 +39,7 @@ catch_connection.notes.each do |note_data|
   modified_at = Time.parse(note_data.server_modified_at)
   puts "checking catch note #{note_id}"
   if modified_at > synced_at
+    any_changes=true
     puts "   changed! (at #{modified_at})"
     note = catch_connection.note(note_id)
     File.open(File.join(local_directory,"#{note_id}.txt"), "w") do |f|
@@ -59,9 +62,12 @@ Dir.chdir(local_directory) do
   existing_files.each do |file|
     note_id = File.basename(file).gsub(/\.txt$/,'')
     if !still_in_catch_set.include?(note_id)
+      any_changes = true
       system("git rm #{note_id}.txt")
     end
   end
   
-  system("git commit -m 'synced up to #{new_sync} (#{new_sync.to_i})' && git push -u origin master")
+  if any_changes
+    system("git commit -m 'synced up to #{new_sync} (#{new_sync.to_i})' && git push -u origin master")
+  end
 end
