@@ -1,0 +1,6 @@
+{
+	"git_repository":"git@github.com:mygitusername/publiccatchnotes.git",
+	"catch_username":"snarkyusername",
+	"catch_password":"cleverpassword",
+	"local_directory":"./notes"
+}
