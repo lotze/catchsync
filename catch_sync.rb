@@ -5,7 +5,7 @@ require 'catch'
 require 'json'
 require 'time'
 
-config_file = File.join(File.dirname(__FILENAME__),"config.json")
+config_file = File.join(File.dirname(__FILE__),"config.json")
 config = JSON.parse(IO.read(config_file))
 
 local_directory = config['local_directory'] || "./notes"
