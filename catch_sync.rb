@@ -68,6 +68,6 @@ Dir.chdir(local_directory) do
   end
   
   if any_changes
-    system("git commit -m 'synced up to #{new_sync} (#{new_sync.to_i})' && git push -u origin master")
+    system("git commit -m 'synced up to #{new_sync} (#{new_sync.to_i})' && git push -q -u origin master")
   end
 end
